@@ -1,0 +1,76 @@
+usuarios = []
+import csv
+while True:
+    print("=" * 100)
+    print("Cadastro de usuários".center(100))
+    print("=" * 100)
+    print("Menu")
+    print("1 - Cadastrar novo usuário")
+    print("2 - Remover usuário")
+    print("3 - Listar ususários")
+    print("4 - Criar arquivo de texto")
+    print("5 - Sair")
+    print("=" * 100)
+
+    def cadastrar_usuario():
+        nome = input("Digite o nome do usuário: ").lower()
+        idade = int(input("Digite a idade do usuário: "))
+        email = input("Digite o email do usuário: ").lower()
+        telefone = input("Digite o telefone do usuário: ")
+        for usuario in usuarios:
+            if usuario[2] == email:
+                print("Já existe um usuário cadastrado com esse E-mail!")
+                return
+        usuarios.append((nome, idade, email, telefone))
+        print(f'Usuário {nome} cadastrado com sucesso!')
+
+    def remover_usuario():
+        nome_email = input("Digite o email do usuário que deseja remover: ")
+        for usuario in usuarios:
+            if usuario[2].lower() == nome_email:
+                usuarios.remove(usuario)
+                print(f'O usuário {nome_email} foi removido com sucesso')
+                break
+        else:
+            print("Usuário não encontrado!")
+    
+    def listar_usuarios():
+        if usuarios:
+            print("=" * 100)
+            print("Usuários cadastrados")
+            print("=" * 100)
+            for usuario in usuarios:
+                print("-" * 100)
+                print(f'Nome: {usuario[0]}\n')
+                print(f'Idade: {usuario[1]}\n')
+                print(f'E-mail: {usuario[2]}\n')
+                print(f'Telefone: {usuario[3]}\n')
+                print("-" * 100)
+        else:
+            print("Não há usuário cadastrados!")
+    
+    def criar_arquivo_csv(usuarios):
+        with open("Usuários.csv", mode="w", newline="") as arquivo_csv:
+            writer = csv.writer(arquivo_csv)
+            writer.writerow(["Nome", "Idade", "Email, Telefone"])  # Cabeçalho do arquivo CSV
+            for usuario in usuarios:
+                writer.writerow([[usuario[0], usuario[1], usuario[2]], usuario[3]])  # Dados dos produtos
+            print("Arquivo CSV criado com sucesso!")
+
+
+    opcao = int(input("Escolha a opção que deseja realizar: "))
+
+    if opcao == 1:
+        cadastrar_usuario()
+    elif opcao == 2:
+        remover_usuario()
+    elif opcao == 3:
+        listar_usuarios()
+    elif opcao == 4:
+        criar_arquivo_csv(usuarios)
+    elif opcao == 5:
+        print("Saindo...")
+        print("Programa finalizado!")
+        break
+    else:
+        print("Opção inválida!")
