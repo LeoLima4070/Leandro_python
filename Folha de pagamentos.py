@@ -49,7 +49,7 @@ while True:
                 print(f'Matrícula: {funcionario[1]}')
                 print(f'Setor: {funcionario[2]}')
                 print(f'Carga-Horária: {funcionario[3]} horas')
-                print(f'Salário base: R$ {funcionario[4]}')
+                print(f'Salário base: R$ {funcionario[4]:.2f}')
                 print("-" * 100)
 
     def gerar_relatorio():
@@ -62,8 +62,8 @@ while True:
                 print(f'Matrícula: {funcionario[1]}')
                 print(f'Setor: {funcionario[2]}')
                 print(f'Carga-Horária: {funcionario[3]}')
-                print(f'Salário base: R$ {funcionario[4]}')
-                print(f'Salário final: R$ {funcionario[5]}')
+                print(f'Salário base: R$ {funcionario[4]:.2f}')
+                print(f'Salário final: R$ {funcionario[5]:.2f}')
         else:
             print("Não há funcionários cadastrados!")
         
@@ -86,5 +86,6 @@ while True:
     elif opcao == 4:
         print("Saindo...")
         print("Programa finalizado!")
+        break
     else:
         print("Opção inválida!")
