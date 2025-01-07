@@ -1,0 +1,77 @@
+historico_IMC = []
+while True:
+    print("=" * 100)
+    print('Calculadora IMC'.center(100))
+    print("=" * 100)
+    print("1 - Calcular IMC")
+    print("2 - Consultar histórico")
+    print("3 - Sair")
+
+    def calcular_imc():
+        print("-" * 100)
+        print("Calcular IMC".center(100))
+        print("-" * 100)
+        altura = float(input("Digite a altura em metros: "))
+        peso = float(input("Digite o peso: "))
+        
+        resultado_calculo = (peso) / (altura ** 2)
+        resultado_categoria = ""
+        
+        if resultado_calculo <= 18.5:
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está abaixo do peso normal')
+            resultado_categoria = "Abaixo do peso normal"
+
+        elif  18.6 <= resultado_calculo <= 24.9:
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está no peso normal')
+            resultado_categoria = "Peso normal"
+                
+        
+        elif  25.0 <= resultado_calculo <= 29.9:
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está com sobrepeso')
+            resultado_categoria = "Sobrepeso"
+        
+        elif  30.0 <= resultado_calculo <= 34.9:
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está com obesidade grau I')
+            resultado_categoria = "Obesidade grau I"
+        
+        elif  35.0 <= resultado_calculo <= 39.9:
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está com obesidade grau II')
+            resultado_categoria = "Obesidade grau II"
+       
+        else:   
+            print(f'Seu IMC é {resultado_calculo:.1f} e você está com obesidade grau III')
+            resultado_categoria = "Obesidade grau III"
+        
+        historico_IMC.append((altura, peso, resultado_calculo, resultado_categoria))
+    
+    def consultar_historico():
+        print("-" * 100)
+        print("Histórico de cálculos IMC".center(100))
+        print("-" * 100)
+        for historico in historico_IMC:
+            print("-" * 100)
+            print(f'Altura: {historico[0]}')
+            print(f'Peso: {historico[1]}')
+            print(f'IMC: {historico[2]:.1f}\n')
+            print(f'Categoria: {historico[3]}')
+            print("-" * 100)
+
+    try:
+        opcao = int(input("Digite a opção que deseja realizar: "))
+    except ValueError:
+        print("Por favor, digite um número válido!")
+        continue
+
+    if opcao == 1:
+        calcular_imc()
+    
+    elif opcao == 2:
+        consultar_historico()
+    
+    elif opcao == 3:
+        print("Saindo de calculadora IMC...")
+        print("Usuário saiu...")
+        break
+
+    else:
+        print("Opção inválida!")
